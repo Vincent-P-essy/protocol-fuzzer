@@ -1,0 +1,16 @@
+{
+  "deterministic": true,
+  "elapsed_seconds": 4.2766,
+  "ground_truth_verified": true,
+  "iterations": 20,
+  "latency_campaign_p50_ms": 69.9257,
+  "latency_campaign_p95_ms": 87.5186,
+  "protocols": 3,
+  "regressions_reproduced": true,
+  "report_hash": "0a7dc228c478ff336de19bb8792218765c0106bfcbc638ed106b191060c5a625",
+  "source_revision": "reference",
+  "source_tree_state": "clean-checkout",
+  "total_coverage_edges": 45,
+  "total_executions": 6020,
+  "total_unique_crashes": 10
+}
