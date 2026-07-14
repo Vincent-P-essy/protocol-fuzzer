@@ -1,0 +1,87 @@
+[build-system]
+requires = ["hatchling==1.28.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "protocol-fuzzer"
+version = "0.2.0"
+description = "Deterministic coverage-guided, grammar-based protocol fuzzer with crash triage and regression capture"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = { file = "LICENSE" }
+authors = [{ name = "Vincent Plessy" }]
+dependencies = [
+  "fastapi>=0.139,<1",
+  "pydantic>=2.13,<3",
+  "uvicorn[standard]>=0.51,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "httpx2>=2.5,<3",
+  "mypy>=1.20,<2",
+  "pytest>=8.4,<9",
+  "pytest-cov>=7.1,<8",
+  "ruff>=0.15,<1",
+]
+
+[project.scripts]
+protofuzz = "protocol_fuzzer.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/protocol_fuzzer"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"fixtures/ground-truth.json" = "protocol_fuzzer/data/ground-truth.json"
+"uv.lock" = "protocol_fuzzer/data/uv.lock"
+"web/app.js" = "protocol_fuzzer/web/app.js"
+"web/index.html" = "protocol_fuzzer/web/index.html"
+"web/style.css" = "protocol_fuzzer/web/style.css"
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src",
+  "/tests",
+  "/fixtures",
+  "/web",
+  "/scripts",
+  "/benchmarks",
+  "/docs",
+  "/.github/workflows/ci.yml",
+  "/CONTRIBUTING.md",
+  "/SECURITY.md",
+  "/Dockerfile",
+  "/docker-compose.yml",
+  "/Makefile",
+  "/README.md",
+  "/LICENSE",
+  "/pyproject.toml",
+  "/uv.lock",
+]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers --strict-config"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["protocol_fuzzer"]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF", "S"]
+# S311: this fuzzer deliberately drives mutation from a seeded, non-cryptographic
+# PRNG so campaigns are reproducible; that is the correct design for a fuzzer.
+ignore = ["S101", "S311"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+packages = ["protocol_fuzzer"]

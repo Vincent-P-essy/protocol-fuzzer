@@ -1,0 +1,27 @@
+{
+  "http": {
+    "signatures": [
+      "191929c2d20491be",
+      "5782081c32c4f45b",
+      "7baed52715da4271"
+    ],
+    "unique_crashes": 3
+  },
+  "jsonrpc": {
+    "signatures": [
+      "11e14a4fa31a83c0",
+      "8eac94895da5aafa",
+      "a7b2c731db00057e",
+      "fe45e01b13afdfe7"
+    ],
+    "unique_crashes": 4
+  },
+  "tlv": {
+    "signatures": [
+      "21d0e902228c2492",
+      "61172ed876665229",
+      "fe7ec1d6e91b2e88"
+    ],
+    "unique_crashes": 3
+  }
+}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Protocol Fuzzer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Protocol Fuzzer</h1>
+      <p id="subtitle">Coverage-guided, grammar-based fuzzing with crash triage and regression capture.</p>
+    </header>
+
+    <main>
+      <section class="panel">
+        <h2>Launch a campaign</h2>
+        <form id="form" class="grid">
+          <label>Protocol
+            <select id="protocol"></select>
+          </label>
+          <label>Iterations
+            <input id="iterations" type="number" value="1000" min="1" max="50000" />
+          </label>
+          <label>Seed
+            <input id="seed" type="number" value="1337" min="0" />
+          </label>
+          <label class="checkbox"><input type="checkbox" id="semantic" checked /> Semantic corpus</label>
+          <button type="submit">Fuzz</button>
+        </form>
+        <div id="summary" class="cards"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Crash buckets</h2>
+        <div id="buckets"><p class="hint">Run a campaign to see triaged crash buckets.</p></div>
+      </section>
+    </main>
+
+    <footer>
+      <span id="meta"></span>
+      <a href="/docs">OpenAPI</a>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
