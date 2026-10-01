@@ -21,6 +21,12 @@ configuration always discovers the same crash buckets, so "which bugs were found
 becomes evidence you can hash and diff. It is a portfolio-grade prototype over
 synthetic parsers, not a production fuzzing platform.
 
+## Running example
+
+![protocol-fuzzer running locally](docs/screenshots/application.png)
+
+A JSON-RPC fuzzing campaign, with coverage counts and crash buckets produced by the local target. [Commands and test results](docs/verification.md).
+
 ## Measured evidence
 
 | Measurement | Reviewed result | Scope |
